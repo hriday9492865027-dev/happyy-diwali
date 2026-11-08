@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #08080C;
+  --foreground: #FFF6E5;
+  --gold-primary: #FFD700;
+  --gold-warm: #F5A623;
+  --gold-amber: #D4AF37;
+  --maroon-deep: #4A0E17;
+  --surface: #12121A;
+  --surface-border: #2A2520;
+}
+
+body {
+  color: var(--foreground);
+  background-color: var(--background);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Cinematic text styles */
+.font-cinematic {
+  font-family: 'Cinzel', Georgia, serif;
+  letter-spacing: 0.05em;
+}
+
+/* Transparency Checkerboard for Cutout Preview */
+.transparency-grid {
+  background-color: #1a1a24;
+  background-image: 
+    linear-gradient(45deg, #12121a 25%, transparent 25%), 
+    linear-gradient(-45deg, #12121a 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #12121a 75%), 
+    linear-gradient(-45deg, transparent 75%, #12121a 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+/* Subtle Golden Glow Effects */
+.glow-gold {
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.25), 0 0 50px rgba(245, 166, 35, 0.15);
+}
+
+.text-glow-gold {
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.4), 0 0 30px rgba(245, 166, 35, 0.25);
+}
+
+.text-glow-title {
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(245, 166, 35, 0.35), 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* Mobile Safe Areas */
+.safe-padding-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.safe-padding-top {
+  padding-top: max(1rem, env(safe-area-inset-top));
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #09090D;
+}
+::-webkit-scrollbar-thumb {
+  background: #2E2822;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
