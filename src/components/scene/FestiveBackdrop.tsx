@@ -119,3 +119,4 @@ function DiyaLamp({ size = "md" }: { size?: "sm" | "md" }) {
     </div>
   );
 }
+

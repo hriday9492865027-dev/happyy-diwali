@@ -48,3 +48,4 @@ test("particle opacity reaches zero at maximum lifetime", () => {
   assert.equal(p.life, 10);
   assert.equal(p.alpha, 0);
 });
+

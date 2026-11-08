@@ -76,3 +76,4 @@ export type ScenePhase =
   | "cracker_burst" // 3.0 - 6.0s: Real-time particle fireworks burst with outward arcing sparks
   | "finale"        // 5.0 - 7.0s: Golden festive typography resolves with soft glow
   | "completed";    // Looping ambient diyas and subtle floating particles
+

@@ -81,3 +81,4 @@ export const auditLogs = pgTable("audit_logs", {
   metadataJson: jsonb("metadata_json"),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 });
+

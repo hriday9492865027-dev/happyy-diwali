@@ -191,3 +191,4 @@ export function PhotoUploader({ onSuccess, onSkip }: PhotoUploaderProps) {
     </div>
   );
 }
+

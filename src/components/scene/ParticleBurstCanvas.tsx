@@ -86,3 +86,4 @@ export const ParticleBurstCanvas = forwardRef<
 });
 
 ParticleBurstCanvas.displayName = "ParticleBurstCanvas";
+

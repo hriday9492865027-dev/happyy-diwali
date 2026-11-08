@@ -15,3 +15,4 @@ function getDb() {
 
 export const db = getDb();
 export { schema };
+

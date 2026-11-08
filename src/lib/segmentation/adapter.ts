@@ -163,3 +163,4 @@ export function getSegmentationProvider(): SegmentationProvider {
       return new MockDevelopmentProvider();
   }
 }
+

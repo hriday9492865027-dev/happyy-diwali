@@ -66,3 +66,4 @@ test("rejects arbitrary text file disguised as image", () => {
   const res = validateImageBuffer(fakeBuffer);
   assert.equal(res.valid, false);
 });
+

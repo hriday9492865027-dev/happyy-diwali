@@ -68,3 +68,4 @@ export function validateImageBuffer(buffer: Buffer): ValidationResult {
       "Unsupported file format. Please upload a genuine JPEG, PNG, or WebP photo.",
   };
 }
+
