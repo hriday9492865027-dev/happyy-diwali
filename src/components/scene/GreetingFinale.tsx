@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { RotateCcw, Share2, Upload, Check, Volume2, VolumeX } from "lucide-react";
 import Link from "next/link";
+import { soundEngine } from "@/lib/audio/sound";
 import type { ScenePhase } from "@/types";
 
 interface GreetingFinaleProps {
@@ -24,6 +25,12 @@ export function GreetingFinale({
 }: GreetingFinaleProps) {
   const [copied, setCopied] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+
+  const toggleAudio = () => {
+    const nextMuted = !isMuted;
+    setIsMuted(nextMuted);
+    soundEngine.setMuted(nextMuted);
+  };
 
   const isVisible = phase === "finale" || phase === "completed";
 
@@ -116,11 +123,11 @@ export function GreetingFinale({
 
         {allowAudio && (
           <button
-            onClick={() => setIsMuted(!isMuted)}
+            onClick={toggleAudio}
             className="min-h-[44px] min-w-[44px] p-2.5 rounded-full border border-festival-border bg-festival-surface/80 text-festival-text-muted hover:text-festival-gold flex items-center justify-center active:scale-95 transition-all duration-200"
             aria-label={isMuted ? "Unmute festive audio" : "Mute audio"}
           >
-            {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+            {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 text-festival-gold" />}
           </button>
         )}
       </div>

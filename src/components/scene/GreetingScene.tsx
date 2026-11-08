@@ -6,6 +6,7 @@ import { ParticleBurstCanvas, type ParticleBurstCanvasHandle } from "./ParticleB
 import { PortraitReveal } from "./PortraitReveal";
 import { GreetingFinale } from "./GreetingFinale";
 import { FastForward } from "lucide-react";
+import { soundEngine } from "@/lib/audio/sound";
 import type { ScenePhase } from "@/types";
 
 interface GreetingSceneProps {
@@ -72,20 +73,24 @@ export function GreetingScene({
       // Fire choreographed cracker bursts on left & right sides (keeping face safe)
       particleCanvasRef.current?.burstNormalized(0.2, 0.35, "gold");
       particleCanvasRef.current?.burstNormalized(0.8, 0.35, "gold");
+      soundEngine.playSparkle();
     }, 3400);
 
     const t4 = setTimeout(() => {
       particleCanvasRef.current?.burstNormalized(0.28, 0.22, "maroon");
       particleCanvasRef.current?.burstNormalized(0.72, 0.22, "maroon");
+      soundEngine.playSparkle();
     }, 4200);
 
     const t5 = setTimeout(() => {
       particleCanvasRef.current?.burstNormalized(0.5, 0.18, "gold");
+      soundEngine.playSparkle();
     }, 4800);
 
     // Phase: Greeting finale (5.4s)
     const t6 = setTimeout(() => {
       setPhase("finale");
+      soundEngine.playGoldenChime();
     }, 5400);
 
     // Phase: Completed / Idle loop (7.0s)

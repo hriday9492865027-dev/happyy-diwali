@@ -23,11 +23,53 @@ export default function AdminPage() {
   });
 
   const [savedSuccess, setSavedSuccess] = useState(false);
+  const [metrics, setMetrics] = useState({ totalUploads: 0, failedProcessing: 0 });
 
-  const handleSave = (e: React.FormEvent) => {
+  React.useEffect(() => {
+    fetch("/api/admin")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.config) {
+          if (data.config.title) setTitle(data.config.title);
+          if (data.config.subtitle) setSubtitle(data.config.subtitle);
+          if (data.config.senderName) setSenderName(data.config.senderName);
+          if (data.config.institutionName) setInstitutionName(data.config.institutionName);
+          if (data.config.enabledFeatures) setFeatures(data.config.enabledFeatures);
+          if (data.config.themeJson?.ghostOpacity) setGhostOpacity(data.config.themeJson.ghostOpacity);
+          if (data.config.themeJson?.particleBudgetDesktop) setParticleDensity(data.config.themeJson.particleBudgetDesktop);
+        }
+        if (data.metrics) {
+          setMetrics(data.metrics);
+        }
+      })
+      .catch((err) => console.warn("Could not load admin config:", err));
+  }, []);
+
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSavedSuccess(true);
-    setTimeout(() => setSavedSuccess(false), 3000);
+    try {
+      await fetch("/api/admin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title,
+          subtitle,
+          senderName,
+          institutionName,
+          enabledFeatures: features,
+          themeJson: {
+            ghostOpacity,
+            particleBudgetMobile: Math.round(particleDensity * 0.4),
+            particleBudgetDesktop: particleDensity,
+            accentColor: "#FFD700",
+          },
+        }),
+      });
+      setSavedSuccess(true);
+      setTimeout(() => setSavedSuccess(false), 3000);
+    } catch (err) {
+      console.error("Save error:", err);
+    }
   };
 
   const toggleFeature = (key: keyof typeof features) => {
